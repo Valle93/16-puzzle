@@ -1,10 +1,16 @@
 public class Game {
 
+    public static boolean number = false;
+
     public static Square[][] sq = Square.getSquareArray();
 
     public static Square tomRuta = sq[3][3];
 
     public static FrameSquare[][] buttons = FrameSquare.getFrameSquareArray();
+
+    public static FrameSquare somSkaFärgas = null;
+
+    public static MouseListenerThread gradvisFärga;
 
 
 
@@ -22,7 +28,7 @@ public class Game {
 
         tomRuta.setRow(tomRuta.getRow() - 1);
 
-        System.out.println("uppfunkar");
+        Frame.moves++;
 
     }
 
@@ -40,7 +46,7 @@ public class Game {
 
         tomRuta.setRow(tomRuta.getRow() + 1);
 
-        System.out.println("nerfunkar");
+        Frame.moves++;
     }
 
     public static void gåVänster(){
@@ -57,7 +63,7 @@ public class Game {
 
         tomRuta.setColumn(tomRuta.getColumn() - 1);
 
-        System.out.println("vänsterFunkar");
+        Frame.moves++;
 
     }
 
@@ -75,6 +81,6 @@ public class Game {
 
         tomRuta.setColumn(tomRuta.getColumn() + 1);
 
-        System.out.println("högerfunkar");
+        Frame.moves++;
     }
 }

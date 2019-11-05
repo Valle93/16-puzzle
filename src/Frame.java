@@ -2,15 +2,25 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import static java.awt.BorderLayout.*;
 import static java.lang.Thread.sleep;
 
-public class Frame extends JFrame implements ActionListener {
+public class Frame extends JFrame implements ActionListener,MouseListener {
+
+    public static int moves = 0;
+
+    public static JLabel labelMoves = new JLabel("" + moves);
 
     public static JButton[] functionButtons = new JButton[3];
 
     public static JPanel foundation = new JPanel();
+
+    JButton[] allaButtons = new JButton[3];
+
+    static JPanel[] färgPaneler = new JPanel[11];
 
     public Frame(){
 
@@ -22,13 +32,15 @@ public class Frame extends JFrame implements ActionListener {
 
         JButton newGame = new JButton("New Game");
 
+        allaButtons[0] = ljud;
+        allaButtons[1] = siffror;
+        allaButtons[2] = newGame;
+
         foundation.setLayout(new BorderLayout());
         JPanel north = new JPanel(new GridLayout(1,4));
         JPanel west = new JPanel(new GridLayout(2,1));
         JPanel east = new JPanel(new GridLayout(2,1));
         JPanel south = new JPanel(new GridLayout(1,4));
-
-        JPanel[] färgPaneler = new JPanel[11];
 
         JButton[] allaButtons = new JButton[]{ljud,siffror, newGame};
 
@@ -49,6 +61,8 @@ public class Frame extends JFrame implements ActionListener {
         }
 
         färgaSaker(allaButtons,färgPaneler,Color.RED);
+
+        färgPaneler[1].add(Frame.labelMoves);
 
         west.add(färgPaneler[4]);
         west.add(färgPaneler[5]);
@@ -100,6 +114,13 @@ public class Frame extends JFrame implements ActionListener {
             functionButtons[i].addActionListener(this);
         }
 
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+
+                Game.buttons[i][j].addMouseListener(this);
+            }
+        }
+
 
     }
 
@@ -145,7 +166,8 @@ public class Frame extends JFrame implements ActionListener {
             }
         }
 
-        JOptionPane.showMessageDialog(null, "Du klarade Det!");
+        JOptionPane.showMessageDialog(null, "Du Klarade Det på " + Frame.moves
+        + " drag och " + " minuter och sekunder");
 
     }
 
@@ -177,6 +199,8 @@ public class Frame extends JFrame implements ActionListener {
 
                         setNumber();
                     }
+
+                    Frame.labelMoves.setText("" + Frame.moves);
 
                     checkWinningCondition();
                 }
@@ -221,5 +245,41 @@ public class Frame extends JFrame implements ActionListener {
 
     }
 
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+
+                if(e.getSource() == Game.buttons[i][j]){
+
+                    färgaSaker(allaButtons,färgPaneler,Game.sq[i][j].getColor());
+                    Game.somSkaFärgas = Game.buttons[i][j];
+
+
+                }
+            }
+        }
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
 }
 

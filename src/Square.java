@@ -1,6 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
 
+import static java.lang.Thread.sleep;
+
 public class Square extends JButton {
 
     public Square(int x, int y, int z){
@@ -136,6 +138,8 @@ public class Square extends JButton {
                 }
 
             }
+
+            Frame.moves = 0;
 
         }
     }
