@@ -166,6 +166,8 @@ public class Frame extends JFrame implements ActionListener,MouseListener {
             }
         }
 
+        SpelaMusik.PlaySound("src\\youwin.wav");
+
         JOptionPane.showMessageDialog(null, "Du Klarade Det på " + Frame.moves
         + " drag och " + " minuter och sekunder");
 
@@ -218,6 +220,21 @@ public class Frame extends JFrame implements ActionListener,MouseListener {
 
             if(e.getSource() == functionButtons[1]){
 
+                if(Game.ljud){
+
+                Game.ljud = false;
+
+                functionButtons[1].setText("Ljud På");
+
+                }
+
+                else{
+
+                Game.ljud = true;
+
+                functionButtons[1].setText("Ljud Av");
+
+                }
 
             }
             if(e.getSource() == functionButtons[2]){
@@ -238,6 +255,8 @@ public class Frame extends JFrame implements ActionListener,MouseListener {
                             Game.buttons[i][j].setText("");
                         }
                     }
+
+                    functionButtons[2].setText("Siffror På");
 
                 }
             }
@@ -271,6 +290,9 @@ public class Frame extends JFrame implements ActionListener,MouseListener {
                     färgaSaker(allaButtons,färgPaneler,Game.sq[i][j].getColor());
                     Game.somSkaFärgas = Game.buttons[i][j];
 
+                    if (Game.ljud) {
+                        SpelaMusik.PlaySound("src\\hover.wav");
+                    }
 
                 }
             }

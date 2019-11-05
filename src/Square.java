@@ -167,6 +167,10 @@ public class Square extends JButton {
 
                 }
 
+                if (Game.ljud) {
+                    SpelaMusik.PlaySound("src\\move.wav");
+                }
+
             }
             else{
 
@@ -174,6 +178,10 @@ public class Square extends JButton {
 
                     Game.gåHöger();
 
+                }
+
+                if (Game.ljud) {
+                    SpelaMusik.PlaySound("src\\move.wav");
                 }
 
 
@@ -192,6 +200,11 @@ public class Square extends JButton {
                     Game.gåNer();
 
                 }
+
+                if (Game.ljud) {
+                    SpelaMusik.PlaySound("src\\move.wav");
+                }
+
             }
             else{
 
@@ -201,6 +214,10 @@ public class Square extends JButton {
 
                     Game.gåUpp();
 
+                }
+
+                if (Game.ljud) {
+                    SpelaMusik.PlaySound("src\\move.wav");
                 }
 
             }

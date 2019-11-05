@@ -2,6 +2,8 @@ public class Game {
 
     public static boolean number = false;
 
+    public static boolean ljud = true;
+
     public static Square[][] sq = Square.getSquareArray();
 
     public static Square tomRuta = sq[3][3];
