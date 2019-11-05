@@ -166,7 +166,9 @@ public class Frame extends JFrame implements ActionListener,MouseListener {
             }
         }
 
-        SpelaMusik.PlaySound("src\\youwin.wav");
+        if (Game.ljud) {
+            SpelaMusik.PlaySound("src\\youwin.wav");
+        }
 
         JOptionPane.showMessageDialog(null, "Du Klarade Det på " + Frame.moves
         + " drag och " + " minuter och sekunder");
