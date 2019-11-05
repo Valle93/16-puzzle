@@ -8,7 +8,7 @@ import static java.lang.Thread.sleep;
 
 public class Frame extends JFrame implements ActionListener {
 
-    static JButton newGame = new JButton("New Game");
+    public static JButton[] functionButtons = new JButton[3];
 
     public static JPanel foundation = new JPanel();
 
@@ -16,15 +16,11 @@ public class Frame extends JFrame implements ActionListener {
 
         Dimension dimPanels = new Dimension(100,100);
 
-        String ljudText = "Ljud På";
+        JButton ljud = new JButton("Ljud Av");
 
-        JButton ljud = new JButton(ljudText);
+        JButton siffror = new JButton("Siffror På");
 
-        String siffrorText = "Siffror Av";
-
-        JButton siffror = new JButton(siffrorText);
-
-        /*JPanel foundation = new JPanel();*/
+        JButton newGame = new JButton("New Game");
 
         foundation.setLayout(new BorderLayout());
         JPanel north = new JPanel(new GridLayout(1,4));
@@ -34,7 +30,7 @@ public class Frame extends JFrame implements ActionListener {
 
         JPanel[] färgPaneler = new JPanel[11];
 
-        JButton[] allaButtons = new JButton[]{ljud,siffror,newGame};
+        JButton[] allaButtons = new JButton[]{ljud,siffror, newGame};
 
         for (int i = 0; i < 9; i++) {
 
@@ -88,10 +84,21 @@ public class Frame extends JFrame implements ActionListener {
 
         updateColors();
 
+        functionButtons[0] = newGame;
+        functionButtons[1] = ljud;
+        functionButtons[2] = siffror;
+
         add(foundation);
         setSize(800,800);
         setVisible(true);
         setLocationRelativeTo(null);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+
+        for (int i = 0; i < 3; i++) {
+
+            functionButtons[i].addActionListener(this);
+        }
 
 
     }
@@ -142,6 +149,16 @@ public class Frame extends JFrame implements ActionListener {
 
     }
 
+    static void setNumber(){
+
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+
+                Game.buttons[i][j].setText("" + Game.sq[i][j].getValue());
+            }
+        }
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -156,19 +173,53 @@ public class Frame extends JFrame implements ActionListener {
 
                     updateColors();
 
+                    if(Game.number){
+
+                        setNumber();
+                    }
+
                     checkWinningCondition();
                 }
             }
         }
 
-        if(e.getSource() == newGame){
 
-            Square.shuffleArray(Game.sq);
+            if(e.getSource() == functionButtons[0]){
 
-            updateColors();
+                Square.shuffleArray(Game.sq);
 
-            System.out.println("hola hallå");
-        }
+                updateColors();
+
+            }
+
+            if(e.getSource() == functionButtons[1]){
+
+
+            }
+            if(e.getSource() == functionButtons[2]){
+
+                if(Game.number == false){
+                    setNumber();
+
+                    functionButtons[2].setText("Siffror av");
+
+                    Game.number = true;
+                }
+                else{
+                    Game.number = false;
+
+                    for (int i = 0; i < 4; i++) {
+                        for (int j = 0; j < 4; j++) {
+
+                            Game.buttons[i][j].setText("");
+                        }
+                    }
+
+                }
+            }
+
 
     }
+
 }
+
