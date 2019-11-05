@@ -4,6 +4,8 @@ public class Game {
 
     public static Square tomRuta = sq[3][3];
 
+    public static FrameSquare[][] buttons = FrameSquare.getFrameSquareArray();
+
 
 
     public static void gåUpp(){
@@ -20,6 +22,8 @@ public class Game {
 
         tomRuta.setRow(tomRuta.getRow() - 1);
 
+        System.out.println("uppfunkar");
+
     }
 
     public static void gåNer(){
@@ -35,6 +39,8 @@ public class Game {
         sq[tomRuta.getRow()][tomRuta.getColumn()] = tempSquare;
 
         tomRuta.setRow(tomRuta.getRow() + 1);
+
+        System.out.println("nerfunkar");
     }
 
     public static void gåVänster(){
@@ -51,6 +57,8 @@ public class Game {
 
         tomRuta.setColumn(tomRuta.getColumn() - 1);
 
+        System.out.println("vänsterFunkar");
+
     }
 
     public static void gåHöger(){
@@ -66,5 +74,7 @@ public class Game {
         sq[tomRuta.getRow()][tomRuta.getColumn()] = tempSquare;
 
         tomRuta.setColumn(tomRuta.getColumn() + 1);
+
+        System.out.println("högerfunkar");
     }
 }

@@ -14,12 +14,11 @@ public class Square extends JButton {
     private int row;
     private int column;
     private int value;
+    private Color color;
 
     public Color getColor() { return color; }
 
     public void setColor(Color color) { this.color = color; }
-
-    private Color color;
 
     public int getRow() { return row; }
 
@@ -94,8 +93,6 @@ public class Square extends JButton {
 
     public static void shuffleArray(Square[][] sq){
 
-        Square tomRuta = sq[3][3];
-
         for (int i = 0; i < 10000; i++) {
 
             double gen = Math.round(0.5 + (Math.random() * 3.49));
@@ -103,7 +100,7 @@ public class Square extends JButton {
 
             if(ran == 1){
 
-                if(tomRuta.getRow() != 0){
+                if(Game.tomRuta.getRow() != 0){
 
                     Game.gåUpp();
                 }
@@ -111,7 +108,7 @@ public class Square extends JButton {
 
             if(ran == 2){
 
-                if(tomRuta.getRow() != 3) {
+                if(Game.tomRuta.getRow() != 3) {
 
                     Game.gåNer();
 
@@ -121,7 +118,7 @@ public class Square extends JButton {
 
             if(ran == 3){
 
-                if(tomRuta.getColumn() != 0){
+                if(Game.tomRuta.getColumn() != 0){
 
                     Game.gåVänster();
 
@@ -132,7 +129,7 @@ public class Square extends JButton {
 
             if(ran == 4) {
 
-                if (tomRuta.getColumn() != 3) {
+                if (Game.tomRuta.getColumn() != 3) {
 
                     Game.gåHöger();
 
@@ -143,37 +140,18 @@ public class Square extends JButton {
         }
     }
 
-    public static String toString(Square[][] x){
-
-        String Squares = "";
-
-        for(int i = 0; i < 4; i++){
-
-            for(int j = 0; j < 4; j++){
-
-                Squares += x[i][j].getValue() + "\t\t";
-            }
-
-            Squares += "\n";
-        }
-
-        return Squares;
-    }
-/*
-    public static void moveSquares(int x, int y){
-
-        Square square = Main.sq[x][y];
+    public static void moveSquares(Square square){
 
         Square tempSquare;
 
-        if(square.getColumn() == Main.tomRuta.getColumn() && square.getRow() == Main.tomRuta.getRow()){
+        if(square.getColumn() == Game.tomRuta.getColumn() && square.getRow() == Game.tomRuta.getRow()){
 
-            //spela ingethänderljud (man tryckte på tomruta)
+            System.out.println("tom ruta");
         }
 
-        else if(square.getRow() == Main.tomRuta.getRow()){
+        else if(square.getRow() == Game.tomRuta.getRow()){
 
-            int antalByten = square.getColumn() - Main.tomRuta.getColumn();
+            int antalByten = square.getColumn() - Game.tomRuta.getColumn();
 
             if(antalByten < 0){
 
@@ -181,7 +159,7 @@ public class Square extends JButton {
 
                 for (int i = 0; i < antalByten; i++) {
 
-                    gåVänster();
+                    Game.gåVänster();
 
                 }
 
@@ -190,7 +168,7 @@ public class Square extends JButton {
 
                 for (int i = 0; i < antalByten; i++) {
 
-                    gåHöger();
+                    Game.gåHöger();
 
                 }
 
@@ -199,15 +177,15 @@ public class Square extends JButton {
 
         }
 
-        else if(square.getColumn() == Main.tomRuta.getColumn()){
+        else if(square.getColumn() == Game.tomRuta.getColumn()){
 
-            int antalByten = square.getRow() - Main.tomRuta.getRow();
+            int antalByten = square.getRow() - Game.tomRuta.getRow();
 
             if(antalByten > 0){
 
                 for(int i = 0; i < antalByten; i++){
 
-                    gåNer();
+                    Game.gåNer();
 
                 }
             }
@@ -217,7 +195,7 @@ public class Square extends JButton {
 
                 for (int i = 0; i < antalByten; i++) {
 
-                    gåUpp();
+                    Game.gåUpp();
 
                 }
 
@@ -231,8 +209,6 @@ public class Square extends JButton {
             }
 
 
-    }*/
-
-
+    }
 
 }
